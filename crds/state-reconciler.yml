@@ -1,0 +1,15 @@
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: statereconcilers.datapio.co
+spec:
+  group: datapio.co
+  version: v1
+  scope: Cluster
+  names:
+    plural: statereconcilers
+    singuler: statereconciler
+    kind: StateReconciler
+    shortNames:
+      - strecon
