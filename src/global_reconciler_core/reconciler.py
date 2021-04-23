@@ -115,14 +115,15 @@ class Reconciler:
         except jsonschema.exceptions.ValidationError as err:
             print('Invalid webhook response:', err, file=sys.stderr)
 
-        if reconciliation_response['spec'].get('delete'):
-            self._reconcile_delete(resource)
-
-        elif reconciliation_response['spec'].get('patch'):
-            self._reconcile_patch(resource, reconciliation_response['patch'])
-
         else:
-            print(
-                'Invalid reconciliation method from webhook',
-                file=sys.stderr
-            )
+            if reconciliation_response['spec'].get('delete'):
+                self._reconcile_delete(resource)
+
+            elif reconciliation_response['spec'].get('patch'):
+                self._reconcile_patch(resource, reconciliation_response['patch'])
+
+            else:
+                print(
+                    'Invalid reconciliation method from webhook',
+                    file=sys.stderr
+                )
