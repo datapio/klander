@@ -1,6 +1,6 @@
-# Global Reconciler
+# klander
 
-The *global reconciler* is a command-line utility that allows you to:
+This project provides a command-line utility that allows you to:
 
  - specify a set of Kubernetes resources to audit
  - identify divergences from your desired cluster state
@@ -31,5 +31,5 @@ spec:
 
 The above resource will delete every ServiceAccount whose name is not `default`.
 
-See [the documentation](https://github.com/datapio/global-reconciler/wiki) for
+See [the documentation](https://github.com/datapio/klander/wiki) for
 more information.

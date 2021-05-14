@@ -1,4 +1,4 @@
-from global_reconciler_core.reconciler import get_resources, Reconciler
+from klander_core.reconciler import get_resources, Reconciler
 
 import sys
 

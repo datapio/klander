@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "global-reconciler"
+name = "klander"
 version = "0.1.0"
 description = "Audit Kubernetes cluster state and reconcile it"
 authors = ["Link Society <contact@link-society.com>"]
