@@ -53,18 +53,18 @@ class Reconciler:
         ]
 
     def reconcile(self, resources):
-        reconcile_method = cr['spec']['reconcile']
+        reconcile_method = self.cr['spec']['reconcile']
 
         if reconcile_method.get('deleteExtras'):
-            for resource in not_matched:
+            for resource in resources:
                 self._reconcile_delete(resource)
 
         elif reconcile_method.get('patch'):
-            for resource in not_matched:
+            for resource in resources:
                 self._reconcile_patch(resource, reconcile_method['patch'])
 
         elif reconcile_method.get('webhook'):
-            for resource in not_matched:
+            for resource in resources:
                 self._reconcile_webhook(resource, reconcile_method['webhook'])
 
         else:
@@ -81,7 +81,8 @@ class Reconciler:
     def _reconcile_patch(self, resource, patch):
         try:
             patched = kubectl.patch(resource, patch)
-            resource_name = f'{patched['kind']}/{patched['metadata']['name']}'
+            kind, name = patched['kind'], patched['metadata']['name']
+            resource_name = f'{kind}/{name}'
             print(resource_name, 'patched')
 
         except RuntimeError as err:
@@ -97,9 +98,9 @@ class Reconciler:
                 }
             })
             response.raise_for_status()
-            reconciliation_response = response.json()
+            reconciliation_resp = response.json()
             jsonschema.validate(
-                reconciliation_response,
+                reconciliation_resp,
                 schema.state_reconciliation_response
             )
 
@@ -116,11 +117,11 @@ class Reconciler:
             print('Invalid webhook response:', err, file=sys.stderr)
 
         else:
-            if reconciliation_response['spec'].get('delete'):
+            if reconciliation_resp['spec'].get('delete'):
                 self._reconcile_delete(resource)
 
-            elif reconciliation_response['spec'].get('patch'):
-                self._reconcile_patch(resource, reconciliation_response['patch'])
+            elif reconciliation_resp['spec'].get('patch'):
+                self._reconcile_patch(resource, reconciliation_resp['patch'])
 
             else:
                 print(
