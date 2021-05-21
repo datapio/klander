@@ -1,0 +1,10 @@
+__pycache__
+build
+dist
+*.spec
+www
+netlify.toml
+crds
+Makefile
+README.md
+.github
