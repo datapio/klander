@@ -31,5 +31,4 @@ spec:
 
 The above resource will delete every ServiceAccount whose name is not `default`.
 
-See [the documentation](https://github.com/datapio/klander/wiki) for
-more information.
+See [the documentation](https://klander.datapio.co/docs/) for more information.
