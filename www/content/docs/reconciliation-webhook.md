@@ -32,7 +32,6 @@ kind: StateReconciliationRequest
 spec:
   object: # the non-compliant resource
 ```
----
 
 ## State Reconciliation Response
 
@@ -48,11 +47,9 @@ The webhook's response **MUST** be a JSON object validating this schema:
 | --- | --- | --- |
 | `apiVersion` | string | Kubernetes resource API version |
 | `kind` | string | Kubernetes resource kind |
-| `spec` | [State Reconciliation Response Spec](#state-reconciliation-response-spec) | Specification of the desired behavior |
+| `spec` | [Response Spec](#response-spec) | Specification of the desired behavior |
 
----
-
-## State Reconciliation Response Spec
+## Response Spec
 
 ### Delete reconciliation
 
