@@ -19,6 +19,10 @@ FROM debian:stable-slim AS runtime
 ARG KUBECTL_VERSION "v1.21.1"
 ARG KUBECTL_URL "https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
 
+RUN useradd -m -s /bin/bash -d /workspace klander
+USER klander
+WORKDIR /workspace
+
 ADD ${KUBECTL_URL} /usr/local/bin/kubectl
 RUN chmod +x /usr/local/bin/kubectl
 
