@@ -2,7 +2,7 @@
   <div class="container">
     <div class="navbar-brand">
       <a href="/" class="navbar-item is-size-4 has-text-weight-semibold">
-        klander &#9851;&#65039;
+        {{ .Site.Title }} {{ .Site.Params.Emoji | safeHTML }}
       </a>
       <span class="navbar-burger" data-target="klander-nav-menu">
         <span></span>

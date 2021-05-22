@@ -6,6 +6,7 @@ title = "klander"
 
 [params]
 
+emoji = "&#9851;&#65039;"
 description = """
 klander is a Compliance-As-Code tool for DevOps used to reconcile divergences
 from a desired Kubernetes cluster state.
