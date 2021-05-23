@@ -1,0 +1,35 @@
+baseURL = "https://klander.datapio.co/"
+languageCode = "en-us"
+staticDir = ["static"]
+
+title = "klander"
+
+[params]
+
+emoji = "&#9851;&#65039;"
+description = """
+klander is a Compliance-As-Code tool for DevOps used to reconcile divergences
+from a desired Kubernetes cluster state.
+"""
+
+github = "https://github.com/datapio/klander"
+
+[[params.menu]]
+
+name = "Datapio"
+url = "https://datapio.co/"
+
+[[params.menu]]
+
+name = "Kubirds"
+url = "https://kubirds.com"
+
+[[params.menu]]
+
+name = "klifter"
+url = "https://klifter.datapio.co/"
+
+[[params.menu]]
+
+name = "Software Development Kit"
+url = "https://sdk.datapio.co/"
