@@ -21,7 +21,7 @@ ARG KUBECTL_URL "https://storage.googleapis.com/kubernetes-release/release/${KUB
 
 COPY --from=builder /workspace/dist/klander /usr/local/bin/klander
 ADD ${KUBECTL_URL} /usr/local/bin/kubectl
-RUN chmod +x /usr/local/bin/kubectl /usr/local/bin/klander
+RUN chmod a+x /usr/local/bin/kubectl /usr/local/bin/klander
 
 RUN useradd -m -s /bin/bash -d /workspace klander
 USER klander
