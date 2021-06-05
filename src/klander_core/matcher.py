@@ -2,7 +2,7 @@
 Pattern matching for Kubernetes resources.
 """
 
-from typing import TypedDict, List, Tuple, Union, Any
+from typing import TypedDict, List, Tuple, Union, Any, cast
 from .kubectl import Resource
 
 from jsonpath_ng import parse
@@ -35,12 +35,15 @@ def match_pattern(resource: Resource, pattern: Pattern) -> bool:
     """
 
     if 'oneOf' in pattern:
+        pattern = cast(PatternOneOf, pattern)
         return match_one_of(resource, pattern['oneOf'])
 
     elif 'allOf' in pattern:
+        pattern = cast(PatternAllOf, pattern)
         return match_all_of(resource, pattern['allOf'])
 
     else:
+        pattern = cast(PatternField, pattern)
         return match_field(resource, pattern)
 
 
