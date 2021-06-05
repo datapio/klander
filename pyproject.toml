@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "klander"
-version = "0.1.0"
+version = "0.2.0"
 description = "Audit Kubernetes cluster state and reconcile it"
 authors = ["Link Society <contact@link-society.com>"]
 license = "Apache-2"
