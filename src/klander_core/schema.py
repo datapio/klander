@@ -1,3 +1,7 @@
+"""
+JSON schema for data validation.
+"""
+
 from .matcher import match_operators
 
 
