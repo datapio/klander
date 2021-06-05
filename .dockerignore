@@ -5,6 +5,5 @@ dist
 www
 netlify.toml
 crds
-Makefile
 README.md
 .github
