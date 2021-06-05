@@ -12,7 +12,7 @@ lint: deps
 	@poetry run pylint src
 
 .PHONY: typecheck
-typecheck:
+typecheck: deps
 ifdef PYRIGHT
 	@poetry run pyright
 endif
