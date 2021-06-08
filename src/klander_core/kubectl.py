@@ -3,8 +3,8 @@ Shell out to `kubectl` CLI.
 """
 
 from typing import Any, Dict, List, Optional, Union, NewType
-from tempfile import TemporaryFile
 import subprocess
+import tempfile
 import json
 
 
@@ -75,7 +75,7 @@ def delete(resource: Resource) -> str:
         output='name'
     )
 
-    return _run(cmd)
+    return _run(cmd).decode('utf-8').strip()
 
 
 def update(resource: Resource, patch: PartialResource) -> Resource:
@@ -171,7 +171,7 @@ def _run(cmd: List[str]) -> str:
     :raises RuntimeError: The command exited with a non-zero exit code
     """
 
-    with TemporaryFile('rb+') as outf:
+    with tempfile.TemporaryFile('rb+') as outf:
         # pylint: disable=consider-using-with
         proc = subprocess.Popen(
             cmd,
