@@ -115,9 +115,6 @@ class Reconciler:
             for resource in resources:
                 self._reconcile_webhook(resource, reconcile_method['webhook'])
 
-        else:
-            print('Invalid reconciliation method', file=sys.stderr)
-
     @staticmethod
     def _reconcile_delete(resource: Resource) -> None:
         """
@@ -128,7 +125,9 @@ class Reconciler:
 
         try:
             resource_name = kubectl.delete(resource)
-            print(resource_name, 'deleted')
+            resource_kind = resource['kind']
+            display_name = f'{resource_kind}/{resource_name}'.lower()
+            print(display_name, 'deleted')
 
         except RuntimeError as err:
             print('Unable to delete resource:', err, file=sys.stderr)
@@ -145,7 +144,7 @@ class Reconciler:
         try:
             patched = kubectl.update(resource, patch)
             kind, name = patched['kind'], patched['metadata']['name']
-            resource_name = f'{kind}/{name}'
+            resource_name = f'{kind}/{name}'.lower()
             print(resource_name, 'patched')
 
         except RuntimeError as err:
@@ -191,11 +190,5 @@ class Reconciler:
             if reconciliation_resp['spec'].get('delete'):
                 self._reconcile_delete(resource)
 
-            elif reconciliation_resp['spec'].get('patch'):
-                self._reconcile_patch(resource, reconciliation_resp['patch'])
-
-            else:
-                print(
-                    'Invalid reconciliation method from webhook',
-                    file=sys.stderr
-                )
+            elif patch := reconciliation_resp['spec'].get('patch'):
+                self._reconcile_patch(resource, patch)
