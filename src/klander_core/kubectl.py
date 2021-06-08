@@ -158,7 +158,7 @@ def _get_resource_type(api_version: str, kind: str) -> str:
         return kind.lower()
 
 
-def _run(cmd: List[str]) -> str:
+def _run(cmd: List[str]) -> bytes:
     """
     Run a `kubectl` command in a subprocess and capture its output.
 

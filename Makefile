@@ -14,7 +14,9 @@ lint: deps
 .PHONY: typecheck
 typecheck: deps
 ifdef PYRIGHT
-	@poetry run pyright
+	@poetry run pyright src
+else
+	@echo "!!WARNING!! pyright was not found, no type checking has been done."
 endif
 
 .PHONY: test
