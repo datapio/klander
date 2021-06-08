@@ -1,0 +1,35 @@
+pod_examples = [
+    dict(
+        apiVersion='v1',
+        kind='Pod',
+        metadata=dict(
+            name='good',
+            namespace='default'
+        ),
+        spec=dict(
+            serviceAccountName='default'
+        )
+    ),
+    dict(
+        apiVersion='v1',
+        kind='Pod',
+        metadata=dict(
+            name='bad',
+            namespace='default'
+        ),
+        spec=dict(
+            serviceAccountName='bad'
+        )
+    ),
+    dict(
+        apiVersion='v1',
+        kind='Pod',
+        metadata=dict(
+            name='raise',
+            namespace='default'
+        ),
+        spec=dict(
+            serviceAccountName='bad'
+        )
+    )
+]

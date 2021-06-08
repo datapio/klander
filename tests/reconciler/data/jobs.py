@@ -1,0 +1,35 @@
+job_examples = [
+    dict(
+        apiVersion='batch/v1',
+        kind='Job',
+        metadata=dict(
+            name='good',
+            namespace='default'
+        ),
+        spec=dict(
+            serviceAccountName='default'
+        )
+    ),
+    dict(
+        apiVersion='batch/v1',
+        kind='Job',
+        metadata=dict(
+            name='bad',
+            namespace='default'
+        ),
+        spec=dict(
+            serviceAccountName='bad'
+        )
+    ),
+    dict(
+        apiVersion='batch/v1',
+        kind='Job',
+        metadata=dict(
+            name='raise',
+            namespace='default'
+        ),
+        spec=dict(
+            serviceAccountName='bad'
+        )
+    )
+]

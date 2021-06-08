@@ -1,13 +1,30 @@
+"""
+Observed Kubernetes resources fetcher.
+"""
+
+from typing import Union, List
+from .kubectl import Resource
+
 from . import kubectl
 
 import sys
 
 
-def get_resources(api_version, kind, namespaces=None):
-    if namespaces is None:
-        namespaces = []
+def get_resources(
+    api_version: str,
+    kind: str,
+    namespaces: Union[str, List[str]]
+) -> List[Resource]:
+    """
+    Get list of resources for each specified namespace.
 
-    elif namespaces == '*':
+    :param api_version: Kubernetes Resource API version (example: `batch/v1`)
+    :param kind: Kubernetes Resource kind (example: `Job`)
+    :param namespaces: Either `*` or a list of Kubernetes namespaces
+    :return: List of successfully fetched Kubernetes resources.
+    """
+
+    if namespaces == '*':
         namespaces = ['*']
 
     resources = []
