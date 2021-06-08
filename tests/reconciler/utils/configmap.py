@@ -13,7 +13,7 @@ class ConfigMapAssertions:
     @staticmethod
     def reconcile(capsys):
         capture = capsys.readouterr()
-        assert 'bad deleted' in capture.out
+        assert 'configmap/bad deleted' in capture.out
         assert 'Webhook sent back an error:' in capture.err
         assert 'Unable to send request to webhook:' in capture.err
         assert 'Unable to parse webhook response:' in capture.err

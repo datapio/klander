@@ -13,5 +13,5 @@ class PodAssertions:
     @staticmethod
     def reconcile(capsys):
         capture = capsys.readouterr()
-        assert 'bad deleted' in capture.out
+        assert 'pod/bad deleted' in capture.out
         assert 'Unable to delete resource: raise' in capture.err
