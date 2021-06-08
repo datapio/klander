@@ -1,7 +1,7 @@
 PYRIGHT := $(shell which pyright 2> /dev/null)
 
 .PHONY: all
-all: lint typecheck build
+all: lint typecheck test build
 
 .PHONY: deps
 deps:
@@ -16,6 +16,10 @@ typecheck: deps
 ifdef PYRIGHT
 	@poetry run pyright
 endif
+
+.PHONY: test
+test: deps
+	@poetry run pytest --cov=src/klander_core --cov-report html --cov-report term --cov-fail-under=95
 
 .PHONY: build
 build: deps
